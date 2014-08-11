@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>X Stream</title>
+
+	<link rel="stylesheet" type="text/css" href="../assets/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="../assets/awesome/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="../assets/styles/xstream.css" />
+
+	<script type="text/javascript" src="../assets/scripts/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="../assets/scripts/xaudioservice.js"></script>
+	<script type="text/javascript" src="../assets/scripts/xstream.js"></script>
+	<script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="top-frame-controls clearfix">
+		<div class="window-controls pull-left col-xs-1">
+			<i id="x-app-window-close" class="fa fa-circle" title="Close"></i>
+			<i id="x-app-window-minimize" class="fa fa-circle" title="Minimize"></i>
+		</div>
+		<div class="window-title pull-left col-xs-10 text-center">
+			<span class="title">X Stream - Simple Media Streamer</span>
+		</div>
+		<div class="window-drag pull-left col-xs-1 text-right">
+			<i id="x-app-window-drag" class="fa fa-align-justify text-center" title="Move Window"></i>
+		</div>
+	</div>
+	<div id="body">
+		<header class="clearfix">
+			<div class="container">
+				<div class="row">
+					<div class="pull-left xstream-logo col-xs-6">
+						<h1><i class="fa fa-play"></i></h1>
+					</div>
+					<div class="pull-left actions col-xs-6 clearfix">
+						<ul class="clearfix pull-right">
+							<li class="pull-left col-md-4">
+								<a href="javascript:void(0)" onclick="xstream.readFile()">
+									<i class="fa fa-file-audio-o"></i>&nbsp; File
+								</a>
+								<input class="x-audio-file hide" type="file" id="audioFile" 
+								accept="audio/mp3, audio/mp4, audio/wav, audio/flac, audio/ogg"/>
+							</li>
+							<li class="pull-left col-md-4">
+								<a href="javascript:void(0)" onclick="xstream.readDirectory()">
+									<i class="fa fa-folder-open-o"></i>&nbsp; Folder
+								</a>
+								<input class="x-audio-folder hide" type="file" id="audioFolder" nwdirectory />
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</header>
+		<section id="mainSection" class="main-section">
+		</section>
+		<footer>
+			<div id="defaultPlayer" class="x-default-player hide">
+				<audio id="audioPlayer" class="x-audio-player" preload="auto" controls="true" autoplay="true">
+				</audio>
+			</div>
+			<div id="audioController" class="controls">
+				<ul class="clearfix">
+					<li class="pull-left backward col-md-4">
+						<a href="javascript:void(0)" onclick="xstream.prev()">
+							<i class="fa fa-step-backward"></i>&nbsp;
+						</a>
+					</li>
+					<li class="pull-left play col-md-4">
+						<a href="javascript:void(0)" class="icon-play" onclick="xstream.playAudio()">
+							<i class="fa fa-play"></i>&nbsp;
+						</a>
+						<a href="javascript:void(0)" class="icon-pause hide" onclick="xstream.pauseAudio()">
+							<i class="fa fa-pause"></i>&nbsp;
+						</a>
+					</li>
+					<li class="pull-left forward col-md-4">
+						<a href="javascript:void(0)" onclick="xstream.next()">
+							<i class="fa fa-step-forward"></i>&nbsp;
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div id="audioInfo" class="info clearfix">
+				<div class="pull-left icon-music">
+					<i class="fa fa-music"></i>
+				</div>
+				<div class="pull-left x-info">
+					<div class="title">
+						<marquee scrollamount="2" scrolldelay="10">Song Title</marquee>
+					</div>
+					<div class="artist-album">Artist - Album</div>
+				</div>
+			</div>
+			<div id="audioProgress" class="x-progress" onclick="xstream.seekAudio(event)">
+				<div id="xBar" class="x-bar"></div>
+			</div>
+			<div id="audioProgressMeta" class="x-progress-length clearfix">
+				<div class="current pull-left col-xs-4">0:00</div>
+				<div class="bit-rate pull-left col-xs-4 text-center">44.1KHZ 192KBPS MP3</div>
+				<div class="total pull-left text-right col-xs-4">0:00</div>
+			</div>
+		</footer>
+	</div>
+</body>
+
+<!-- Debug -->
+<script type="text/javascript">
+	var gui = require('nw.gui');
+
+	jQuery(document).ready(function() {
+		// for debugging
+		gui.Window.get().showDevTools();
+
+		// for refresh
+		jQuery(document).on('keyup', function(e) {
+			e = e || window.event;
+
+			if(e.keyCode == 116) {
+				window.location.reload();
+				return;
+			}
+		});
+
+		// for x-app-window-close
+		jQuery('i#x-app-window-close').click(function() {
+			gui.Window.get().close(true);
+			return;
+		});
+
+		// for x-app-window-minimize
+		jQuery('i#x-app-window-minimize').click(function() {
+			gui.Window.get().minimize();
+			return;
+		});
+	});
+</script>
+</html>

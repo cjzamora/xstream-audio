@@ -1,0 +1,40 @@
+<div class="track-list">
+	{{#if tracks}} 
+		<table class="table track-table">
+			<thead>
+				<th></th>
+				<th>Title</th>
+				<th>Album</th>
+				<th>Artist</th>
+			</thead>
+			<tbody>
+			{{#each tracks}}
+				<tr class="track-{{index}}" data-path="{{path}}" data-index="{{index}}" ondblclick="xstream.selectTrack(event)">
+					<td align="center">
+						<span class="play-icon" data-index="{{index}}" onclick="xstream.selectTrack(event)">
+							<i class="fa fa-play"></i>
+						</span>
+					</td>
+					<td>
+						{{title}}
+					</td>
+					<td>
+						{{#if album}}
+							{{album}}
+						{{else}}
+							Unknown Album
+						{{/if}}
+					</td>
+					<td>
+						{{#if artist}}
+							{{artist}}
+						{{else}}
+							Unknown Artist
+						{{/if}}
+					</td>
+				</tr>
+			{{/each}}
+			</tbody>
+		</table>
+	{{/if}}
+</div>

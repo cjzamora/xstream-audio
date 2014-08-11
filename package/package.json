@@ -1,0 +1,24 @@
+// Default package configuration
+{
+	"main" 		: "source/index.html",
+	"name"		: "X Stream",
+	"version" 	: "0.1.0",
+	"keywords" 	: ["music", "stream", "video", "torrent"],
+	"window" 	: {
+		"title" 	 : "X Stream",
+		"icon" 		 : "",
+		"toolbar" 	 : false,
+		"frame" 	 : false,
+		"width" 	 : 800,
+		"height" 	 : 600,
+		"position"   : "center",
+		"min_width"  : 800,
+		"min_height" : 600,
+		"max_width"  : 800,
+		"max_height" : 600,
+		"resizable"  : false
+	},
+	"webkit" : {
+		"plugin" : true
+	}
+}
