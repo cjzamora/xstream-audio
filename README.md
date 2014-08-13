@@ -1,4 +1,4 @@
 xstream-audio
 =============
 
-Simple Media Player build using node-webkit
+Simple Media Player built using node-webkit
